@@ -1,19 +1,9 @@
 <template>
-  <div class="home">
-    <h1>hello {{ count }}</h1>
-  </div>
+  <v-container>
+    <v-slide-y-transition mode="out-in">
+      <v-layout column align-left>
+        <h1>Home page</h1>
+      </v-layout>
+    </v-slide-y-transition>
+  </v-container>
 </template>
-
-<script>
-import { mapGetters } from 'vuex'
-
-
-export default {
-  name: 'home',
-  computed: {
-    ...mapGetters({
-      count: 'getCount'
-    })
-  }
-};
-</script>
