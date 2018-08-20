@@ -10,14 +10,16 @@
                 <v-icon size="150px">account_circle</v-icon>
               </div>
               <div class="center block">
-                <v-form>
+                <v-form v-model="valid">
                   <v-text-field
                     v-model="username"
+                    :rules="[val => val.length > 0 || 'Required']"
                     label="Username"
                     required
                   ></v-text-field>
                   <v-text-field
                     v-model="password"
+                    :rules="[val => val.length > 0 || 'Required']"
                     :append-icon="showPassword ? 'visibility_off' : 'visibility'"
                     :type="showPassword ? 'text' : 'password'"
                     label="Password"
@@ -68,15 +70,13 @@ export default {
     username: '',
     password: '',
     showPassword: false,
+    valid: false,
   }),
   computed: {
     ...mapGetters({
       isAuthenticated: 'auth/isAuthenticated',
       loading: 'auth/loading',
     }),
-    valid() {
-      return !!this.username && !!this.password
-    },
   },
   methods: {
     login() {

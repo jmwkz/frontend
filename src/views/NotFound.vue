@@ -6,7 +6,7 @@
           <v-card>
             <v-card-title primary-title>
               <div class="center block">
-                <h1>Not Found!</h1>
+                <h1>Page Not Found!</h1>
               </div>
               <div class="center block">
                 <v-icon size="150px">error</v-icon>

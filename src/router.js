@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/Home.vue'),
+      component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
       beforeEnter: (to, from, next) => {
         if (store.getters['auth/isAuthenticated']) {
           next()
@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      component: () => import('./views/About.vue'),
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       beforeEnter: (to, from, next) => {
         if (store.getters['auth/isAuthenticated']) {
           next()
@@ -36,7 +36,7 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: () => import('./views/Login.vue'),
+      component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
       beforeEnter: (to, from, next) => {
         if (store.getters['auth/isAuthenticated']) {
           next('/')
@@ -48,7 +48,7 @@ export default new Router({
     {
       path: '/signup',
       name: 'SignUp',
-      component: () => import('./views/Signup.vue'),
+      component: () => import(/* webpackChunkName: "signup" */ './views/Signup.vue'),
       beforeEnter: (to, from, next) => {
         if (store.getters['auth/isAuthenticated']) {
           next('/')
@@ -60,7 +60,7 @@ export default new Router({
     {
       path: '*',
       name: 'NotFound',
-      component: () => import('./views/NotFound.vue'),
+      component: () => import(/* webpackChunkName: "notfound" */'./views/NotFound.vue'),
     },
   ],
 })
