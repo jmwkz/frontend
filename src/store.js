@@ -1,16 +1,16 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import VueResource from 'vue-resource'
 
-Vue.use(Vuex);
+import auth from '@/modules/auth'
+import notification from '@/modules/notification'
+
+Vue.use(Vuex)
+Vue.use(VueResource)
 
 export default new Vuex.Store({
-  state: {
-
+  modules: {
+    auth,
+    notification,
   },
-  mutations: {
-
-  },
-  actions: {
-
-  },
-});
+})
