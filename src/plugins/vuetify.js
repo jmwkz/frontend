@@ -12,6 +12,7 @@ import {
   VCard,
   VForm,
   VTextField,
+  VAlert,
   transitions,
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -29,6 +30,7 @@ Vue.use(Vuetify, {
     VCard,
     VForm,
     VTextField,
+    VAlert,
     transitions,
   },
 })

@@ -6,7 +6,7 @@
           <v-card>
             <v-card-title primary-title>
               <div class="center block">
-                <h1>Login</h1>
+                <h1>Sign Up</h1>
                 <v-icon size="150px">account_circle</v-icon>
               </div>
               <div class="center block">
@@ -19,8 +19,11 @@
                   <v-text-field
                     v-model="password"
                     :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                    :rules="[rules.min, rules.upper, rules.lower, rules.digit]"
                     :type="showPassword ? 'text' : 'password'"
                     label="Password"
+                    hint="At least 8 characters"
+                    counter
                     @click:append="showPassword = !showPassword"
                     required
                   ></v-text-field>
@@ -36,9 +39,9 @@
                 color="info"
                 class="white--text"
                 @click.native="loader = 'loading'"
-                @click="login"
+                @click="signup"
               >
-                Login
+                Sign Up
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -63,11 +66,17 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'login',
+  name: 'signup',
   data: () => ({
     username: '',
     password: '',
     showPassword: false,
+    rules: {
+      min: password => password.length >= 8 || 'Min 8 characters',
+      upper: password => password.match(/[A-Z]+/g) || 'At least 1 upper case',
+      lower: password => password.match(/[a-z]+/g) || 'At least 1 lower case',
+      digit: password => password.match(/[0-9]+/g) || 'At least 1 digit',
+    },
   }),
   computed: {
     ...mapGetters({
@@ -79,8 +88,8 @@ export default {
     },
   },
   methods: {
-    login() {
-      this.$store.dispatch('auth/login', {
+    signup() {
+      this.$store.dispatch('auth/signup', {
         username: this.username,
         password: this.password,
       })

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from './views/Login.vue'
 
 import store from './store'
 
@@ -13,10 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/Home.vue'),
+      component: () => import('./views/Home.vue'),
       beforeEnter: (to, from, next) => {
         if (store.getters['auth/isAuthenticated']) {
           next()
@@ -28,10 +24,7 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: () => import('./views/About.vue'),
       beforeEnter: (to, from, next) => {
         if (store.getters['auth/isAuthenticated']) {
           next()
@@ -43,7 +36,7 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login,
+      component: () => import('./views/Login.vue'),
       beforeEnter: (to, from, next) => {
         if (store.getters['auth/isAuthenticated']) {
           next('/')
@@ -51,6 +44,23 @@ export default new Router({
           next()
         }
       },
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: () => import('./views/Signup.vue'),
+      beforeEnter: (to, from, next) => {
+        if (store.getters['auth/isAuthenticated']) {
+          next('/')
+        } else {
+          next()
+        }
+      },
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: () => import('./views/NotFound.vue'),
     },
   ],
 })
