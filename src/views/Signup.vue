@@ -10,9 +10,10 @@
                 <v-icon size="150px">account_circle</v-icon>
               </div>
               <div class="center block">
-                <v-form>
+                <v-form v-model="valid">
                   <v-text-field
                     v-model="username"
+                    :rules="[val => val.length > 5 || 'Min 6 characters']"
                     label="Username"
                     required
                   ></v-text-field>
@@ -71,11 +72,12 @@ export default {
     username: '',
     password: '',
     showPassword: false,
+    valid: false,
     rules: {
       min: password => password.length >= 8 || 'Min 8 characters',
-      upper: password => password.match(/[A-Z]+/g) || 'At least 1 upper case',
-      lower: password => password.match(/[a-z]+/g) || 'At least 1 lower case',
-      digit: password => password.match(/[0-9]+/g) || 'At least 1 digit',
+      upper: password => (password.match(/[A-Z]+/g) && true) || 'At least 1 upper case',
+      lower: password => (password.match(/[a-z]+/g) && true) || 'At least 1 lower case',
+      digit: password => (password.match(/[0-9]+/g) && true) || 'At least 1 digit',
     },
   }),
   computed: {
@@ -83,9 +85,6 @@ export default {
       isAuthenticated: 'auth/isAuthenticated',
       loading: 'auth/loading',
     }),
-    valid() {
-      return !!this.username && !!this.password
-    },
   },
   methods: {
     signup() {

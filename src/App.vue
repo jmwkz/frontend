@@ -19,8 +19,8 @@
     >
       <v-toolbar-title v-text="title" class="title"></v-toolbar-title>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat to="/">Home</v-btn>
-        <v-btn flat to="/about">About</v-btn>
+        <v-btn v-if="isAuthenticated" flat to="/">Home</v-btn>
+        <v-btn v-if="isAuthenticated" flat to="/about">About</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
