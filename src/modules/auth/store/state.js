@@ -1,5 +1,5 @@
 export default {
   isAuthenticated: false,
   loading: false,
-  token: null,
+  token: null || window.localStorage.getItem('accessToken'),
 }
