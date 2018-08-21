@@ -15,6 +15,7 @@ export default {
   [LOGIN_SUCCESS](state, token) {
     state.loading = false
     state.isAuthenticated = true
+    window.localStorage.setItem('accessToken', token)
     state.token = token
   },
   [LOGIN_FAIL](state) {
@@ -28,6 +29,7 @@ export default {
   [SIGNUP_SUCCESS](state, token) {
     state.loading = false
     state.isAuthenticated = true
+    window.localStorage.setItem('accessToken', token)
     state.token = token
   },
   [SIGNUP_FAIL](state) {
@@ -38,6 +40,7 @@ export default {
   [LOGOUT](state) {
     state.loading = false
     state.isAuthenticated = false
+    window.localStorage.removeItem('accessToken')
     state.token = null
   },
 }

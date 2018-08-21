@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import store from './store'
+import auth from './utils/auth'
 
 Vue.use(Router)
 
@@ -14,11 +14,11 @@ export default new Router({
       name: 'home',
       component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
       beforeEnter: (to, from, next) => {
-        if (store.getters['auth/isAuthenticated']) {
+        auth.verifyLogin().then(() => {
           next()
-        } else {
+        }).catch(() => {
           next('/login')
-        }
+        })
       },
     },
     {
@@ -26,11 +26,11 @@ export default new Router({
       name: 'about',
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       beforeEnter: (to, from, next) => {
-        if (store.getters['auth/isAuthenticated']) {
+        auth.verifyLogin().then(() => {
           next()
-        } else {
+        }).catch(() => {
           next('/login')
-        }
+        })
       },
     },
     {
@@ -38,11 +38,11 @@ export default new Router({
       name: 'Login',
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
       beforeEnter: (to, from, next) => {
-        if (store.getters['auth/isAuthenticated']) {
+        auth.verifyLogin().then(() => {
           next('/')
-        } else {
+        }).catch(() => {
           next()
-        }
+        })
       },
     },
     {
@@ -50,11 +50,11 @@ export default new Router({
       name: 'SignUp',
       component: () => import(/* webpackChunkName: "signup" */ './views/Signup.vue'),
       beforeEnter: (to, from, next) => {
-        if (store.getters['auth/isAuthenticated']) {
+        auth.verifyLogin().then(() => {
           next('/')
-        } else {
+        }).catch(() => {
           next()
-        }
+        })
       },
     },
     {
