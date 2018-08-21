@@ -37,7 +37,7 @@
               <v-btn
                 :loading="loading"
                 :disabled="loading || !valid"
-                color="info"
+                color="primary"
                 class="white--text"
                 @click.native="loader = 'loading'"
                 @click="signup"

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app dark>
     <div class="alert">
       <v-alert
         v-for="(notification, index) in notifications"
@@ -67,7 +67,9 @@
     >
       <v-toolbar-side-icon class="hidden-md-and-up" @click="leftDrawer = !leftDrawer">
       </v-toolbar-side-icon>
-      <v-toolbar-title v-text="title" class="title"></v-toolbar-title>
+      <v-toolbar-title class="title">
+        <span class="brand"><router-link class="router-link" to='/'>{{ title }}</router-link></span>
+      </v-toolbar-title>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-if="isAuthenticated" flat to="/">Home</v-btn>
         <v-btn v-if="isAuthenticated" flat to="/about">About</v-btn>
@@ -87,7 +89,18 @@
 
 <style scoped>
   .title {
-    padding-right: 20px;
+    padding-right: 10px;
+  }
+  .brand {
+    cursor: pointer;
+  }
+  .brand:hover {
+    display: inline-block;
+    transform: scale(0.9);
+  }
+  .router-link {
+    text-decoration: none;
+    color: inherit;
   }
   .alert {
     position: absolute;

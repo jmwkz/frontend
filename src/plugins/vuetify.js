@@ -18,6 +18,15 @@ import {
 import 'vuetify/src/stylus/app.styl'
 
 Vue.use(Vuetify, {
+  theme: {
+    primary: '#448AFF',
+    secondary: '#BDBDBD',
+    accent: '#82B1FF',
+    error: '#FF1744',
+    info: '#AED581',
+    success: '#00C853',
+    warning: '#FFAB00',
+  },
   components: {
     VApp,
     VNavigationDrawer,
