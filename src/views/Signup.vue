@@ -2,12 +2,12 @@
   <v-container>
     <v-slide-y-transition mode="out-in">
       <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
+        <v-flex xs12 sm8 md6 offset-sm2 offset-md3>
           <v-card>
             <v-card-title primary-title>
               <div class="center block">
                 <h1>Sign Up</h1>
-                <v-icon size="150px">account_circle</v-icon>
+                <v-icon size="150px">how_to_reg</v-icon>
               </div>
               <div class="center block">
                 <v-form v-model="valid">
