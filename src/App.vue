@@ -13,10 +13,60 @@
         <v-icon class="cancel" @click="deleteNotification(index)">cancel</v-icon>
       </v-alert>
     </div>
+    <v-navigation-drawer
+      v-model="leftDrawer"
+      fixed
+      app
+    >
+      <v-list>
+        <v-list-tile v-if="!isAuthenticated" to="/login">
+          <v-list-tile-action>
+            <v-icon>person</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Login</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="!isAuthenticated" to="/signup">
+          <v-list-tile-action>
+            <v-icon>how_to_reg</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Sign Up</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="isAuthenticated" to="/">
+          <v-list-tile-action>
+            <v-icon>home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Home</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="isAuthenticated" to="/about">
+          <v-list-tile-action>
+            <v-icon>info</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>About</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="isAuthenticated" @click="logout">
+          <v-list-tile-action>
+            <v-icon>person_outline</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Logout</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
     <v-toolbar
       app
       :clipped-left="clipped"
     >
+      <v-toolbar-side-icon class="hidden-md-and-up" @click="leftDrawer = !leftDrawer">
+      </v-toolbar-side-icon>
       <v-toolbar-title v-text="title" class="title"></v-toolbar-title>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-if="isAuthenticated" flat to="/">Home</v-btn>
@@ -65,8 +115,9 @@ export default {
   name: 'App',
   data() {
     return {
-      clipped: true,
       title: 'RAFFLER',
+      clipped: true,
+      leftDrawer: false,
     }
   },
   computed: {
